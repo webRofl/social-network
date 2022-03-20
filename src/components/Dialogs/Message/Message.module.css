@@ -1,0 +1,27 @@
+.wrapper {
+  display: flex;
+  margin-bottom: 10px;
+  font-size: 25px;
+  min-height: 25px;
+}
+
+.owner {
+  font-size: 18px;
+  text-align: center;
+}
+
+.message {
+  background: rgba(59, 59, 59, 0.205);
+  border-radius: 10%;
+  padding: 0 10px 20px 30px;
+}
+
+.logo {
+  margin-right: 20px;
+}
+
+.logo img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}

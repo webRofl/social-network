@@ -1,0 +1,23 @@
+.active {
+  background: silver !important;
+}
+
+.dialogBlock {
+  padding: 20px 80px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar img {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+}

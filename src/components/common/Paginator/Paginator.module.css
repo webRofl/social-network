@@ -1,0 +1,26 @@
+.active {
+  font-weight: bold;
+}
+
+.wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.pageCount {
+  font-size: 25px;
+  margin: 0 15px;
+}
+
+.button {
+  width: 35px;
+  height: 35px;
+  font-size: 35px;
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

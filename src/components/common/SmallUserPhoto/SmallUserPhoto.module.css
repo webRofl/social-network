@@ -1,0 +1,24 @@
+.userPhotoBlock img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin-right: 25px;
+}
+
+.userPhotoBlock {
+  display: flex;
+  align-items: center;
+  background: silver;
+  padding: 10px;
+  border-radius: 5%;
+}
+
+.userPhotoBlock span {
+  margin-right: 25px;
+  font-size: 20px;
+}
+
+.userPhotoBlock button {
+  width: 50px;
+  height: 25px;
+}

@@ -1,0 +1,10 @@
+.formContainer {
+  display: grid;
+  grid-template-columns: 85% 15%;
+  height: 10vh;
+}
+
+.formContainer input[type='text'] {
+  text-align: center;
+  font-size: 25px;
+}

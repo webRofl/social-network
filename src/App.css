@@ -1,0 +1,28 @@
+* {
+  font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.app-wrapper {
+  width: 100%;
+  display: grid;
+  grid-template: 10vh 90vh/ 1fr;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  background: rgba(5, 78, 194, 0.513);
+}
+
+.app-wrapper-content {
+  display: flex;
+  padding: 0 12.5%;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+}

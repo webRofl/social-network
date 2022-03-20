@@ -1,0 +1,89 @@
+/* global */
+
+/* font */
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+/* white section */
+
+.body {
+  display: flex;
+  justify-content: center;
+  font-family: 'Roboto', sans-serif;
+  font-size: 22px;
+}
+
+/* wrapper */
+
+.wrapper {
+  background: silver;
+  width: 1200px;
+  overflow: hidden;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 1%;
+  padding: 1% 2%;
+}
+
+/* header */
+
+.header {
+  display: flex;
+  align-items: center;
+  font-size: 18px;
+}
+
+.logo img {
+  width: 60px;
+  border-radius: 50%;
+}
+
+.logo {
+  margin-right: 1%;
+}
+
+/* description */
+
+.description {
+  padding: 1.5%;
+}
+
+/* media */
+
+.media p {
+  padding: 1.5%;
+}
+
+.media img {
+  border-radius: 1%;
+  width: 100%;
+}
+
+/* social activity */
+
+.socialActivity {
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  margin-top: 1%;
+  margin-bottom: 1%;
+  font-size: 30px;
+}
+
+.socialActivity button {
+  width: 150px;
+  height: 40px;
+  border-radius: 10%;
+  border: 1px solid black;
+  background: transparent;
+  transition: 1s;
+  font-size: 25px;
+}
+
+.socialActivity button:hover {
+  transform: rotateX(35deg);
+}
+
+.socialActivity button:focus {
+  border: 2px solid red;
+}
