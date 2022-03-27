@@ -49,6 +49,11 @@ const ProfileInfo = (props) => {
             setEditMode={props.setEditMode}
             updateProfile={props.updateProfile}
             errorForm={props.errorForm}
+            contacts={props.profile.contacts}
+            fullName={props.profile.fullName}
+            lookingForAJob={props.profile.lookingForAJob}
+            lookingForAJobDescription={props.profile.lookingForAJobDescription}
+            aboutMe={props.profile.aboutMe}
           />
         ) : (
           <ProfileData

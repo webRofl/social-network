@@ -11,7 +11,7 @@ const ProfileDataForm = (props) => {
       str.slice(0, index) + str[index + 1].toUpperCase() + str.slice(index + 2)
     );
   };
-
+  console.log(props);
   const autoField = (name) => {
     return (
       <>
@@ -48,21 +48,23 @@ const ProfileDataForm = (props) => {
     }
   };
 
+  // const initialSelectors = (selector) => props[selector] || '';
+
   return (
     <Formik
       initialValues={{
-        fullName: '',
-        aboutMe: '',
-        lookingForAJob: false,
-        lookingForAJobDescription: '',
-        facebook: '',
-        webSite: '',
-        vk: '',
-        twitter: '',
-        instagram: '',
-        youtube: '',
-        github: '',
-        mainLink: '',
+        fullName: props.fullName || '',
+        aboutMe: props.aboutMe || '',
+        lookingForAJob: props.lookingForAJob || false,
+        lookingForAJobDescription: props.lookingForAJobDescription || '',
+        facebook: props.contacts.facebook || '',
+        webSite: props.contacts.webSite || '',
+        vk: props.contacts.vk || '',
+        twitter: props.contacts.twitter || '',
+        instagram: props.contacts.instagram || '',
+        youtube: props.contacts.youtube || '',
+        github: props.contacts.github || '',
+        mainLink: props.contacts.mainLink || '',
       }}
       onSubmit={handleSubmit}
     >

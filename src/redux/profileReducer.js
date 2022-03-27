@@ -135,7 +135,7 @@ export const updatePhoto = (photo) => async (dispatch) => {
 };
 
 export const updateProfile = (profile, contacts) => async (dispatch) => {
-  const response = await profileAPI.updateProfile(profile);
+  const response = await profileAPI.updateProfile({ ...profile }, contacts);
   if (response.resultCode === 0) {
     dispatch(updateProfileSuccess(profile, contacts));
   } else {
