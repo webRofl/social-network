@@ -6,7 +6,7 @@ const SmallUserPhoto = (props) => {
   return (
     <div className={classes.userPhotoBlock}>
       <img
-        src={props.profilePhoto ? props.userPhoto : userPhoto}
+        src={props.profilePhoto ? props.profilePhoto : userPhoto}
         alt="small user avatar"
       />
       <span>{props.fullName}</span>

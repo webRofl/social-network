@@ -35,12 +35,11 @@ export const setAuthUserData = (
   userId,
   email,
   fullName,
-  profilePhoto,
   isAuth = true,
   errors = null
 ) => ({
   type: SET_USER_DATA,
-  data: { userId, email, fullName, profilePhoto, isAuth, errors },
+  data: { userId, email, fullName, isAuth, errors },
 });
 
 export const setErrorMessage = (errorMessage) => ({

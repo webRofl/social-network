@@ -58,10 +58,4 @@ const Navbar = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    id: state.auth.userId,
-  };
-};
-
-export default connect(mapStateToProps, null)(Navbar);
+export default Navbar;

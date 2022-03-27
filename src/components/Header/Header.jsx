@@ -11,7 +11,7 @@ const Header = (props) => {
         src="https://i.pinimg.com/originals/16/de/5f/16de5f8dd1ffe99f9e169a0605a960b3.png"
         alt="logo img"
       />
-      <Navbar />
+      <Navbar id={props.id} />
       <div className={classes.authBlock}>
         {props.isAuth ? (
           <SmallUserPhoto

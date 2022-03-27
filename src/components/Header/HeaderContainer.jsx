@@ -14,6 +14,8 @@ const mapStateToProps = (state) => {
     fullName: state.auth.fullName,
     isAuth: state.auth.isAuth,
     profilePhoto: state.auth.profilePhoto,
+    id: state.auth.userId,
+    profilePhoto: state.profilePage.profile?.photos?.small,
   };
 };
 
