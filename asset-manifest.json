@@ -1,9 +1,9 @@
 {
   "files": {
     "main.css": "/social-network/static/css/main.2a2ff3d3.css",
-    "main.js": "/social-network/static/js/main.ea8d1370.js",
-    "static/css/493.f6c61e5f.chunk.css": "/social-network/static/css/493.f6c61e5f.chunk.css",
-    "static/js/493.1a97ff67.chunk.js": "/social-network/static/js/493.1a97ff67.chunk.js",
+    "main.js": "/social-network/static/js/main.61dc08ab.js",
+    "static/css/831.c5b9074f.chunk.css": "/social-network/static/css/831.c5b9074f.chunk.css",
+    "static/js/831.2edefa73.chunk.js": "/social-network/static/js/831.2edefa73.chunk.js",
     "static/css/33.3149743d.chunk.css": "/social-network/static/css/33.3149743d.chunk.css",
     "static/js/33.291e2b9a.chunk.js": "/social-network/static/js/33.291e2b9a.chunk.js",
     "static/css/490.31d6cfe0.chunk.css": "/social-network/static/css/490.31d6cfe0.chunk.css",
@@ -19,9 +19,9 @@
     "static/media/userPhoto.png": "/social-network/static/media/userPhoto.f1a46325ff3003bb5e5a.png",
     "index.html": "/social-network/index.html",
     "main.2a2ff3d3.css.map": "/social-network/static/css/main.2a2ff3d3.css.map",
-    "main.ea8d1370.js.map": "/social-network/static/js/main.ea8d1370.js.map",
-    "493.f6c61e5f.chunk.css.map": "/social-network/static/css/493.f6c61e5f.chunk.css.map",
-    "493.1a97ff67.chunk.js.map": "/social-network/static/js/493.1a97ff67.chunk.js.map",
+    "main.61dc08ab.js.map": "/social-network/static/js/main.61dc08ab.js.map",
+    "831.c5b9074f.chunk.css.map": "/social-network/static/css/831.c5b9074f.chunk.css.map",
+    "831.2edefa73.chunk.js.map": "/social-network/static/js/831.2edefa73.chunk.js.map",
     "33.3149743d.chunk.css.map": "/social-network/static/css/33.3149743d.chunk.css.map",
     "33.291e2b9a.chunk.js.map": "/social-network/static/js/33.291e2b9a.chunk.js.map",
     "490.653c8971.chunk.js.map": "/social-network/static/js/490.653c8971.chunk.js.map",
@@ -33,6 +33,6 @@
   },
   "entrypoints": [
     "static/css/main.2a2ff3d3.css",
-    "static/js/main.ea8d1370.js"
+    "static/js/main.61dc08ab.js"
   ]
 }
