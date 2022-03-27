@@ -6,6 +6,8 @@ import {
   setUserStatus,
   setStatus,
   updatePhoto,
+  updateProfile,
+  setEditMode,
 } from '../../redux/profileReducer';
 import Profile from './Profile';
 import { withAuthRedirect } from '../../hoc/withAuthRedirect/withAuthRedirect';
@@ -38,6 +40,8 @@ const mapStateToProps = (state) => {
     profile: state.profilePage.profile,
     status: state.profilePage.status,
     id: state.auth.userId,
+    editMode: state.profilePage.editMode,
+    errorForm: state.profilePage.errorForm,
   };
 };
 
@@ -48,6 +52,8 @@ export default compose(
     setUserStatus,
     setStatus,
     updatePhoto,
+    updateProfile,
+    setEditMode,
   }),
   withAuthRedirect,
   withUrlChecker

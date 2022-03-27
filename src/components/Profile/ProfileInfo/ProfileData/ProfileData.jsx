@@ -16,7 +16,7 @@ const ProfileData = (props) => {
     ) : null;
 
   return (
-    <div className={classes.description}>
+    <>
       <ul>
         <li>Name: {props.fullName}</li>
         {props.aboutMe ? <li>About Me: {props.aboutMe}</li> : null}
@@ -37,7 +37,7 @@ const ProfileData = (props) => {
         {userInfoAutoComplete(props.contacts.website, 'Personal Website')}
         {userInfoAutoComplete(props.contacts.youtube, 'Youtube')}
       </ul>
-    </div>
+    </>
   );
 };
 
