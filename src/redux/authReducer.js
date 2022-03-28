@@ -1,7 +1,8 @@
-import { authAPI } from '../api/api';
+import { authAPI, profileAPI } from '../api/api';
 
-const SET_USER_DATA = 'SET_USER_DATA';
-const SET_AUTH_ERROR = 'SET_AUTH_ERROR';
+const SET_USER_DATA = 'authReducer/SET_USER_DATA';
+const SET_AUTH_ERROR = 'authReducer/SET_AUTH_ERROR';
+const SET_USER_INFO = 'authReducer/SET_USER_INFO';
 
 const initialState = {
   userId: null,
@@ -24,6 +25,12 @@ const authReducer = (state = initialState, action) => {
         ...state,
         errors: action.errorMessage,
       };
+    case SET_USER_INFO:
+      return {
+        ...state,
+        fullName: action.fullName,
+        profilePhoto: action.profilePhoto,
+      };
     default:
       return state;
   }
@@ -45,6 +52,12 @@ export const setAuthUserData = (
 export const setErrorMessage = (errorMessage) => ({
   type: SET_AUTH_ERROR,
   errorMessage,
+});
+
+export const setUserInfo = (fullName, profilePhoto) => ({
+  type: SET_USER_INFO,
+  fullName,
+  profilePhoto,
 });
 
 // thunk creator
@@ -73,6 +86,11 @@ export const logout = () => async (dispatch) => {
   if (logoutData.resultCode === 0) {
     dispatch(setAuthUserData(null, null, null, null, false));
   }
+};
+
+export const getMyData = (id) => async (dispatch) => {
+  const response = await profileAPI.getProfile(id);
+  dispatch(setUserInfo(response.fullName, response.photos.small));
 };
 
 export default authReducer;

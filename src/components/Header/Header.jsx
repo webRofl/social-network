@@ -15,9 +15,10 @@ const Header = (props) => {
       <div className={classes.authBlock}>
         {props.isAuth ? (
           <SmallUserPhoto
+            id={props.id}
+            logout={props.logout}
             profilePhoto={props.profilePhoto}
             fullName={props.fullName}
-            logout={props.logout}
           />
         ) : (
           <NavLink
