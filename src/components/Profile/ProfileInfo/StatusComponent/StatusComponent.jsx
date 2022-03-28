@@ -23,23 +23,24 @@ const StatusComponent = (props) => {
   }, [props.status]);
 
   return (
-    <div>
+    <div className={classes.wrapper__profileStatusBlock}>
+      <span className={classes.wrapper__profileStatusTip}>Status: </span>
       {editMode ? (
-        <div>
-          <input
-            type="text"
-            value={status}
-            onBlur={deactivateEditMode}
-            autoFocus={true}
-            onChange={(event) => onStatusChange(event.currentTarget.value)}
-          />
-        </div>
+        <input
+          type="text"
+          value={status}
+          onBlur={deactivateEditMode}
+          autoFocus={true}
+          onChange={(event) => onStatusChange(event.currentTarget.value)}
+          className={`${classes.wrapper__profileStatusInput} ${classes.wrapper__profileStatus}`}
+        />
       ) : (
-        <div>
-          <span onDoubleClick={activateEditMode}>
-            {status || 'click for create your first status'}
-          </span>
-        </div>
+        <span
+          onDoubleClick={activateEditMode}
+          className={classes.wrapper__profileStatus}
+        >
+          {status || 'click for create your first status'}
+        </span>
       )}
     </div>
   );

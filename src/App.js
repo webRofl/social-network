@@ -22,12 +22,6 @@ const Music = lazy(() => import('./components/Music/Music'));
 const Settings = lazy(() => import('./components/Settings/Settings'));
 const UsersContainer = lazy(() => import('./components/Users/UsersContainer'));
 
-// import DialogsContainer from './components/Dialogs/DialogsContainer';
-// import News from './components/News/News';
-// import Music from './components/Music/Music';
-// import Settings from './components/Settings/Settings';
-// import UsersContainer from './components/Users/UsersContainer';
-
 class App extends React.Component {
   componentDidMount() {
     this.props.initialize();

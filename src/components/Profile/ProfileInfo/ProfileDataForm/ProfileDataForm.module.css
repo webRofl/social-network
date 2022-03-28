@@ -1,12 +1,59 @@
-.profileForm {
+.editProfile__modalForm {
   display: flex;
   flex-direction: column;
-  /* border: 1px solid red; */
-  width: 50%;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  border: 1px solid black;
+  border-radius: 10px;
+  margin-top: 15px;
+  padding: 10px 15px;
 }
 
-.profileForm__submit {
+.editProfile__submitBtn {
   margin-top: 15px;
+}
+
+.editProfile__modalForm > input[type='text'] {
+  font-size: 20px;
+  padding-left: 5px;
+  width: 100%;
+}
+
+.editProfile__modalForm > label,
+.editProfile__checkboxBlock {
+  align-self: flex-start;
+  margin-top: 15px;
+}
+
+.editProfile__modalForm > label:first-child {
+  margin-top: 0;
+}
+
+.editProfile__checkbox {
+  margin-left: 5px;
+}
+
+.editProfile__btn {
+  width: 300px;
+  margin-left: 10px;
+  height: 40px;
+  background-color: rgba(5, 78, 194, 0.513);
+  margin-top: 15px;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  position: relative;
+  transition: all 0.1s;
+  border: none;
+  font-size: 20px;
+}
+
+.editProfile__submitBtn {
+  background: rgb(14, 185, 14);
+}
+
+.editProfile__btn:hover {
+  box-shadow: 1px 1px 1px 1px #000;
 }

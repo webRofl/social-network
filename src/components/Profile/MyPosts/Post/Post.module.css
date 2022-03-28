@@ -16,13 +16,13 @@
 /* wrapper */
 
 .wrapper {
-  background: silver;
   width: 1200px;
   overflow: hidden;
   margin-top: 10px;
   margin-bottom: 10px;
-  border-radius: 1%;
   padding: 1% 2%;
+  border: 1px solid black;
+  border-radius: 10px;
 }
 
 /* header */
@@ -55,7 +55,7 @@
 }
 
 .media img {
-  border-radius: 1%;
+  border-radius: 10px;
   width: 100%;
 }
 
@@ -73,7 +73,7 @@
 .socialActivity button {
   width: 150px;
   height: 40px;
-  border-radius: 10%;
+  border-radius: 10px;
   border: 1px solid black;
   background: transparent;
   transition: 1s;

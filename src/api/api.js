@@ -50,7 +50,6 @@ export const profileAPI = {
       .then((response) => response.data);
   },
   updateProfile(profile, contacts) {
-    console.log('API', { ...profile, contacts });
     return instance
       .put('profile', { ...profile, contacts })
       .then((response) => response.data);

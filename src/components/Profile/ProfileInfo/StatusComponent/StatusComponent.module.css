@@ -1,6 +1,38 @@
-.statusInput {
-  height: 24px;
+.wrapper__profileStatusBlock {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 10px 15px;
+  display: flex;
+  height: 50px;
+  align-items: center;
+}
+
+.wrapper__profileStatusTip {
+  align-self: flex-start;
+}
+
+.wrapper__profileStatus {
+  display: block;
+  align-self: center;
+  width: 100%;
+  margin-left: 5px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  padding-left: 5px;
+  transition: all 0.5s;
+}
+
+.wrapper__profileStatus:hover {
+  background: rgb(228, 227, 227);
+}
+
+.wrapper__profileStatusInput {
+  border: none;
   font-size: 20px;
-  background: transparent;
-  padding: 15px 0;
+}
+
+.wrapper__profileStatusInput:hover {
+  background: none;
 }

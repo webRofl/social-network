@@ -12,13 +12,16 @@ const MyPostForm = (props) => {
       }}
     >
       {() => (
-        <Form className={classes.wrapper}>
+        <Form className={classes.myPostForm}>
           <Field
             name="postName"
             placeholder="Enter new post name"
             type="text"
+            className={classes.myPostForm__text}
           />
-          <button type="submit">Add Post</button>
+          <button type="submit" className={classes.myPostForm__btn}>
+            Add Post
+          </button>
         </Form>
       )}
     </Formik>

@@ -1,4 +1,32 @@
-.description li {
+.wrapper__profileDataBlock {
+  border: 1px solid black;
+  border-radius: 10px;
+  padding-left: 15px;
   list-style: none;
-  align-self: center;
+  margin-top: 15px;
+}
+
+.wrapper__profileDataBlock > li {
+  margin: 2.5px 0;
+}
+
+.wrapper__profileDataEditBtn {
+  width: 300px;
+  margin-left: 10px;
+  height: 40px;
+  background-color: rgba(5, 78, 194, 0.513);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  position: relative;
+  transition: all 0.1s;
+  margin: 10px auto;
+  border: none;
+  font-size: 20px;
+}
+
+.wrapper__profileDataEditBtn:hover {
+  box-shadow: 1px 1px 1px 1px #000;
 }

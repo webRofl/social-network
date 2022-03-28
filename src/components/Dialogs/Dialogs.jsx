@@ -8,12 +8,10 @@ const Dialogs = (props) => {
   const DialogsElements = props.dialogPageState.dialogs.map((data, index) => (
     <DialogItem path={String(data.id)} name={data.name} key={index} />
   ));
-  // my edits (key={index})
 
   const MessageElements = props.dialogPageState.messages.map((data, index) => (
     <Message message={data.message} key={index} owner={data.owner} />
   ));
-  // my edits (key={index})
 
   return (
     <div className={classes.dialogs}>

@@ -24,10 +24,10 @@ const ProfileInfo = (props) => {
   const isOwner = () => props.id === parseInt(props.url.params.userId);
 
   return (
-    <div className={classes.wrapper}>
-      <div className={classes.logoDiv}>
+    <div className={classes.appWrapper__profileLogo}>
+      <div className={classes.profileLogo__logoBlock}>
         <img
-          className={classes.logo}
+          className={classes.profileLogo__logo}
           src={
             props.profile.photos.large
               ? props.profile.photos.large
@@ -35,14 +35,21 @@ const ProfileInfo = (props) => {
           }
           alt="big avatar"
         />
-        {isOwner() ? <input type="file" onChange={uploadPhoto} /> : null}
-      </div>
-      <div className={classes.description}>
-        <StatusComponent status={props.status} setStatus={props.setStatus} />
-
-        {isOwner() && !props.editMode ? (
-          <input type="button" value="Edit profile" onClick={editModeHandler} />
+        {isOwner() ? (
+          <div className={classes.profileLogo__inputBlock}>
+            <span className={classes.profileLogo__uploadFileBtn}>
+              Upload photo
+            </span>
+            <input
+              type="file"
+              onChange={uploadPhoto}
+              className={classes.profileLogo__uploadFileInput}
+            />
+          </div>
         ) : null}
+      </div>
+      <div>
+        <StatusComponent status={props.status} setStatus={props.setStatus} />
 
         {props.editMode ? (
           <ProfileDataForm
@@ -62,6 +69,9 @@ const ProfileInfo = (props) => {
             fullName={props.profile.fullName}
             lookingForAJob={props.profile.lookingForAJob}
             lookingForAJobDescription={props.profile.lookingForAJobDescription}
+            isOwner={isOwner}
+            editModeHandler={editModeHandler}
+            editMode={props.editMode}
           />
         )}
       </div>

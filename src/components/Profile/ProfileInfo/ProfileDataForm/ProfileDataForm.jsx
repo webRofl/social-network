@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import classes from './ProfileDataForm.module.css';
 
@@ -11,7 +11,7 @@ const ProfileDataForm = (props) => {
       str.slice(0, index) + str[index + 1].toUpperCase() + str.slice(index + 2)
     );
   };
-  console.log(props);
+
   const autoField = (name) => {
     return (
       <>
@@ -48,7 +48,11 @@ const ProfileDataForm = (props) => {
     }
   };
 
-  // const initialSelectors = (selector) => props[selector] || '';
+  const [isShowContacts, setShowContacts] = useState(false);
+
+  const handleContacts = () => {
+    setShowContacts(!isShowContacts);
+  };
 
   return (
     <Formik
@@ -69,13 +73,19 @@ const ProfileDataForm = (props) => {
       onSubmit={handleSubmit}
     >
       {(formikProps) => (
-        <Form className={classes.profileForm}>
+        <Form className={classes.editProfile__modalForm}>
           {autoField('Full name')}
 
           {autoField('About me')}
 
-          <label>Looking for a job?</label>
-          <Field type="checkbox" name="lookingForAJob" />
+          <div className={classes.editProfile__checkboxBlock}>
+            <label>Looking for a job?</label>
+            <Field
+              type="checkbox"
+              name="lookingForAJob"
+              className={classes.editProfile__checkbox}
+            />
+          </div>
 
           <label>Skills</label>
           <Field
@@ -85,20 +95,32 @@ const ProfileDataForm = (props) => {
             disabled={!formikProps.values.lookingForAJob}
           />
 
-          <h1>Contacts</h1>
+          <input
+            type="button"
+            value="Show contacts"
+            onClick={handleContacts}
+            className={classes.editProfile__btn}
+          />
 
-          {autoField('Facebook')}
-          {autoField('WebSite')}
-          {autoField('Vk')}
-          {autoField('Twitter')}
-          {autoField('Instagram')}
-          {autoField('Youtube')}
-          {autoField('Github')}
-          {autoField('MainLink')}
+          {isShowContacts ? (
+            <>
+              {autoField('Facebook')}
+              {autoField('WebSite')}
+              {autoField('Vk')}
+              {autoField('Twitter')}
+              {autoField('Instagram')}
+              {autoField('Youtube')}
+              {autoField('Github')}
+              {autoField('MainLink')}
+            </>
+          ) : null}
 
           {props.errorForm ? <span>{props.errorForm}</span> : null}
 
-          <button type="submit" className={classes.profileForm__submit}>
+          <button
+            type="submit"
+            className={`${classes.editProfile__btn} ${classes.editProfile__submitBtn}`}
+          >
             Submit
           </button>
         </Form>
