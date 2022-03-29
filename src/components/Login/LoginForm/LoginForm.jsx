@@ -33,6 +33,8 @@ const LoginForm = (props) => {
           <div className={classes.fieldWrapper}>
             <label htmlFor="email">Email</label>
 
+            <p>Test e-mail: test_job_js@mail.ru</p>
+
             <Field name="email" placeholder="Type your email" type="email" />
           </div>
 
@@ -42,6 +44,8 @@ const LoginForm = (props) => {
 
           <div className={classes.fieldWrapper}>
             <label htmlFor="password">Password</label>
+
+            <p>Test password: testpassword</p>
 
             <Field
               name="password"
