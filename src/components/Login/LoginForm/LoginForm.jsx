@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Formik, Field, Form } from 'formik';
 import classes from './LoginForm.module.css';
 import { validationSchema } from '../../../utils/validators/loginValidator';
@@ -8,7 +8,12 @@ const LoginForm = (props) => {
   if (props.isAuth) return <Navigate to={'/profile/' + props.id} />;
 
   const handleSubmit = (values, actions) => {
-    props.login(values.email, values.password, values.rememberMe);
+    props.login(
+      values.email,
+      values.password,
+      values.rememberMe,
+      values.captcha
+    );
     actions.resetForm({ email: '', password: '' });
   };
 
@@ -18,6 +23,7 @@ const LoginForm = (props) => {
         email: '',
         password: '',
         rememberMe: false,
+        captcha: '',
       }}
       onSubmit={handleSubmit}
       validationSchema={validationSchema}
@@ -27,23 +33,26 @@ const LoginForm = (props) => {
           <div className={classes.fieldWrapper}>
             <label htmlFor="email">Email</label>
 
-            {formikProps.touched.email && formikProps.errors.email && (
-              <p className={classes.error}>{formikProps.errors.email}</p>
-            )}
             <Field name="email" placeholder="Type your email" type="email" />
           </div>
 
+          {formikProps.touched.email && formikProps.errors.email && (
+            <p className={classes.error}>{formikProps.errors.email}</p>
+          )}
+
           <div className={classes.fieldWrapper}>
             <label htmlFor="password">Password</label>
-            {formikProps.touched.password && formikProps.errors.password && (
-              <p className={classes.error}>{formikProps.errors.password}</p>
-            )}
+
             <Field
               name="password"
               placeholder="Type your Password"
               type="password"
             />
           </div>
+
+          {formikProps.touched.password && formikProps.errors.password && (
+            <p className={classes.error}>{formikProps.errors.password}</p>
+          )}
 
           <div className={classes.fieldWrapper}>
             <label htmlFor="checkbox" className={classes.rememberMe}>
@@ -55,6 +64,17 @@ const LoginForm = (props) => {
               className={classes.checkbox}
             />
           </div>
+
+          {props.captchaUrl && (
+            <div className={classes.loginCaptchaBlock}>
+              <img src={props.captchaUrl} alt="captcha" />
+              <Field
+                name="captcha"
+                type="text"
+                className={classes.loginCaptchaField}
+              />
+            </div>
+          )}
 
           {props.errors && (
             <div className={classes.errorLogin}>

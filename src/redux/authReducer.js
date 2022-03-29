@@ -1,8 +1,9 @@
-import { authAPI, profileAPI } from '../api/api';
+import { authAPI, profileAPI, securityAPI } from '../api/api';
 
 const SET_USER_DATA = 'authReducer/SET_USER_DATA';
 const SET_AUTH_ERROR = 'authReducer/SET_AUTH_ERROR';
 const SET_USER_INFO = 'authReducer/SET_USER_INFO';
+const SET_CAPTCHA_URL_SUCCESS = 'authReducer/SET_CAPTCHA_URL_SUCCESS';
 
 const initialState = {
   userId: null,
@@ -11,6 +12,7 @@ const initialState = {
   isAuth: false,
   profilePhoto: null,
   errors: null,
+  captchaUrl: null,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -30,6 +32,11 @@ const authReducer = (state = initialState, action) => {
         ...state,
         fullName: action.fullName,
         profilePhoto: action.profilePhoto,
+      };
+    case SET_CAPTCHA_URL_SUCCESS:
+      return {
+        ...state,
+        captchaUrl: action.captchaUrl,
       };
     default:
       return state;
@@ -60,6 +67,11 @@ export const setUserInfo = (fullName, profilePhoto) => ({
   profilePhoto,
 });
 
+export const setCaptchaUrlSuccess = (captchaUrl) => ({
+  type: SET_CAPTCHA_URL_SUCCESS,
+  captchaUrl,
+});
+
 // thunk creator
 
 export const getMe = () => async (dispatch) => {
@@ -71,12 +83,15 @@ export const getMe = () => async (dispatch) => {
 };
 
 export const login =
-  (email, password, rememberMe = false) =>
+  (email, password, rememberMe = false, captcha = null) =>
   async (dispatch) => {
-    const loginData = await authAPI.login(email, password, rememberMe);
+    const loginData = await authAPI.login(email, password, rememberMe, captcha);
     if (loginData.resultCode === 0) {
       dispatch(getMe());
     } else {
+      if (loginData.resultCode === 10) {
+        dispatch(getCaptchaUrl());
+      }
       dispatch(setErrorMessage(loginData.messages[0]));
     }
   };
@@ -91,6 +106,11 @@ export const logout = () => async (dispatch) => {
 export const getMyData = (id) => async (dispatch) => {
   const response = await profileAPI.getProfile(id);
   dispatch(setUserInfo(response.fullName, response.photos.small));
+};
+
+const getCaptchaUrl = () => async (dispatch) => {
+  const captchaUrl = await securityAPI.getCaptchaUrl();
+  dispatch(setCaptchaUrlSuccess(captchaUrl.url));
 };
 
 export default authReducer;

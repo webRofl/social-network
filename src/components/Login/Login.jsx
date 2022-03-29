@@ -17,6 +17,7 @@ const mapStateToProps = (state) => ({
   isAuth: state.auth.isAuth,
   id: state.auth.userId,
   errors: state.auth.errors,
+  captchaUrl: state.auth.captchaUrl,
 });
 
 export default compose(connect(mapStateToProps, { login }))(Login);
