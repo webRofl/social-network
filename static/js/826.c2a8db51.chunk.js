@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkfirst_project=self.webpackChunkfirst_project||[]).push([[826],{2826:function(r,e,n){n.r(e),n.d(e,{default:function(){return c}});n(2791);var t="PageNotFound_errorBlock__nMQsp",s=n(184),c=function(){return(0,s.jsx)("div",{className:t,children:(0,s.jsx)("h1",{children:"Error | page does not exist"})})}}}]);
+//# sourceMappingURL=826.c2a8db51.chunk.js.map
