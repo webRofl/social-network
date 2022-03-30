@@ -1,16 +1,20 @@
 import './App.css';
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useEffect } from 'react';
 import HeaderContainer from './components/Header/HeaderContainer';
-import { Routes, Route } from 'react-router-dom';
 import Login from './components/Login/Login';
 import { connect } from 'react-redux';
 import { initialize } from './redux/appReducer';
 import Preloader from './components/common/Preloader/Preloader';
 import store from './redux/redux-store';
 import { Provider } from 'react-redux';
-import { BrowserRouter, HashRouter } from 'react-router-dom';
+import {
+  HashRouter,
+  useNavigate,
+  Routes,
+  Route,
+  useMatch,
+} from 'react-router-dom';
 
-// import ProfileContainer from './components/Profile/ProfileContainer';
 const ProfileContainer = lazy(() =>
   import('./components/Profile/ProfileContainer')
 );
@@ -21,39 +25,51 @@ const News = lazy(() => import('./components/News/News'));
 const Music = lazy(() => import('./components/Music/Music'));
 const Settings = lazy(() => import('./components/Settings/Settings'));
 const UsersContainer = lazy(() => import('./components/Users/UsersContainer'));
+const PageNotFound = lazy(() =>
+  import('./components/PageNotFound/PageNotFound')
+);
 
-class App extends React.Component {
-  componentDidMount() {
-    this.props.initialize();
-  }
+const App = (props) => {
+  const navigate = useNavigate();
+  const match = useMatch('/*');
 
-  render() {
-    if (!this.props.isInitialized) return <Preloader />;
+  useEffect(() => {
+    props.initialize();
+  }, []);
 
-    return (
-      <div className="app-wrapper" role="main">
-        <HeaderContainer />
-        <div className="app-wrapper-content">
-          <Suspense fallback={<Preloader />}>
-            <Routes>
-              <Route path="/profile/:userId" element={<ProfileContainer />} />
-              <Route path="/dialogs/*" element={<DialogsContainer />} />
-              <Route path="/login" element={<Login />} />
-              <Route path="news" element={<News />} />
-              <Route path="music" element={<Music />} />
-              <Route path="settings" element={<Settings />} />
-              <Route path="users" element={<UsersContainer />} />
-            </Routes>
-          </Suspense>
-        </div>
+  useEffect(() => {
+    if (match.pathname === '/' && props.userId) {
+      navigate('/profile/' + props.userId);
+    }
+  }, [props.userId]);
+
+  if (!props.isInitialized) return <Preloader />;
+
+  return (
+    <div className="app-wrapper" role="main">
+      <HeaderContainer />
+      <div className="app-wrapper-content">
+        <Suspense fallback={<Preloader />}>
+          <Routes>
+            <Route path="/profile/:userId" element={<ProfileContainer />} />
+            <Route path="/dialogs/*" element={<DialogsContainer />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="news" element={<News />} />
+            <Route path="music" element={<Music />} />
+            <Route path="settings" element={<Settings />} />
+            <Route path="users" element={<UsersContainer />} />
+            <Route path="*" element={<PageNotFound />} />
+          </Routes>
+        </Suspense>
       </div>
-    );
-  }
-}
-
-const mapStateToProps = (state) => {
-  return { isInitialized: state.app.isInitialized };
+    </div>
+  );
 };
+
+const mapStateToProps = (state) => ({
+  isInitialized: state.app.isInitialized,
+  userId: state.auth.userId,
+});
 
 const AppContainer = connect(mapStateToProps, { initialize })(App);
 
