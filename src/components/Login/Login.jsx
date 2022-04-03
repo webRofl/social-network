@@ -3,7 +3,7 @@ import LoginForm from './LoginForm/LoginForm';
 import classes from './Login.module.css';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import { login } from '../../redux/authReducer';
+import { login } from '../../redux/authReducer.ts';
 
 const Login = (props) => {
   return (

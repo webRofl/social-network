@@ -3,7 +3,7 @@ import React, { Suspense, lazy, useEffect } from 'react';
 import HeaderContainer from './components/Header/HeaderContainer';
 import Login from './components/Login/Login';
 import { connect } from 'react-redux';
-import { initialize } from './redux/appReducer';
+import { initialize } from './redux/appReducer.ts';
 import Preloader from './components/common/Preloader/Preloader';
 import store from './redux/redux-store';
 import { Provider } from 'react-redux';
