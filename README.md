@@ -92,6 +92,6 @@ $ npm start
 
 ![profile screenshot][3]
 
-[1]: (https://webrofl.github.io/social-network)
-[2]: (https://nodejs.org/)
+[1]: https://webrofl.github.io/social-network
+[2]: https://nodejs.org/
 [3]: https://i.yapx.ru/Reia2.png 'profile'
