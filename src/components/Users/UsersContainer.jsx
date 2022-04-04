@@ -5,7 +5,7 @@ import {
   setToggleIsProgress,
   getUsers,
   toggleFollowTC,
-} from '../../redux/usersReducer';
+} from '../../redux/usersReducer.ts';
 import React from 'react';
 import Preloader from '../common/Preloader/Preloader';
 import { withAuthRedirect } from '../../hoc/withAuthRedirect/withAuthRedirect';
@@ -17,7 +17,7 @@ import {
   getCurrentPageSelector,
   getIsFetchingSelector,
   getInProgressSelector,
-} from './../../redux/userSelectors';
+} from './../../redux/userSelectors.ts';
 
 class UsersContainer extends React.Component {
   componentDidMount() {

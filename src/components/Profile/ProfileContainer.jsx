@@ -8,7 +8,7 @@ import {
   updatePhoto,
   updateProfile,
   setEditMode,
-} from '../../redux/profileReducer';
+} from '../../redux/profileReducer.ts';
 import Profile from './Profile';
 import { withAuthRedirect } from '../../hoc/withAuthRedirect/withAuthRedirect';
 import { withUrlChecker } from '../../hoc/withUrlChecker/withUrlChecker';

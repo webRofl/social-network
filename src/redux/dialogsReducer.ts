@@ -1,5 +1,16 @@
 const ADD_NEW_MESSAGE = 'ADD-NEW-MESSAGE';
 
+type InitialDialogsType = {
+  id: number
+  name: string
+}
+
+type InitialMessageType = {
+  id: number
+  message: string
+  owner: string
+}
+
 const initialState = {
   dialogs: [
     { id: 0, name: 'Dimych' },
@@ -9,15 +20,17 @@ const initialState = {
     { id: 4, name: 'Burgers' },
     { id: 5, name: 'Eat' },
     { id: 6, name: 'Spicy' },
-  ],
+  ] as Array<InitialDialogsType>,
   messages: [
     { id: 0, message: 'Hi', owner: 'me' },
     { id: 1, message: 'How are you?', owner: 'me' },
     { id: 2, message: 'Yo', owner: 'Isabella' },
-  ],
+  ] as Array<InitialMessageType>,
 };
 
-const dialogReducer = (state = initialState, action) => {
+type InitialStateType = typeof initialState;
+
+const dialogReducer = (state = initialState, action: any): InitialStateType => {
   switch (action.type) {
     case ADD_NEW_MESSAGE:
       const newMessage = {
@@ -34,6 +47,11 @@ const dialogReducer = (state = initialState, action) => {
   }
 };
 
-export const addMessage = (message) => ({ type: ADD_NEW_MESSAGE, message });
+type AddMessageActionType = {
+  type: typeof ADD_NEW_MESSAGE
+  message: string
+}
+
+export const addMessage = (message: string): AddMessageActionType => ({ type: ADD_NEW_MESSAGE, message });
 
 export default dialogReducer;

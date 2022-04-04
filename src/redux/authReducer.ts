@@ -5,27 +5,19 @@ const SET_AUTH_ERROR = 'authReducer/SET_AUTH_ERROR';
 const SET_USER_INFO = 'authReducer/SET_USER_INFO';
 const SET_CAPTCHA_URL_SUCCESS = 'authReducer/SET_CAPTCHA_URL_SUCCESS';
 
-type initialStateType = {
-  userId: number | null,
-  email: string | null,
-  fullName: string | null,
-  isAuth: boolean,
-  profilePhoto: string | null,
-  errors: string[] | null,
-  captchaUrl: string | null,
-};
-
-const initialState: initialStateType = {
-  userId: null,
-  email: null,
-  fullName: null,
+const initialState = {
+  userId: null as number | null,
+  email: null as string | null,
+  fullName: null as string | null,
   isAuth: false,
-  profilePhoto: null,
-  errors: null,
-  captchaUrl: null,
+  profilePhoto: null as string | null,
+  errors: null as string[] | null,
+  captchaUrl: null as string | null,
 };
 
-const authReducer = (state = initialState, action: any): initialStateType => {
+type InitialStateType = typeof initialState;
+
+const authReducer = (state = initialState, action: any): InitialStateType => {
   switch (action.type) {
     case SET_USER_DATA:
       return {
@@ -55,58 +47,58 @@ const authReducer = (state = initialState, action: any): initialStateType => {
 
 // action creator
 
-type setAuthUserDataDataType = {
-  userId: number
-  email: string
-  fullName: string
+type SetAuthUserDataDataActionType = {
+  userId: number | null
+  email: string | null
+  fullName: string | null
   isAuth: boolean
   errors: string[] | null
 };
 
-type setAuthUserDataType = {
+type SetAuthUserDataActionType = {
   type: typeof SET_USER_DATA
-  data: setAuthUserDataDataType
+  data: SetAuthUserDataDataActionType
 };
 
 export const setAuthUserData = (
-  userId: number,
-  email: string,
-  fullName: string,
+  userId: number | null,
+  email: string | null,
+  fullName: string | null,
   isAuth: boolean = true,
-  errors: string[] = null
-): setAuthUserDataType => ({
+  errors: string[] | null = null
+): SetAuthUserDataActionType => ({
   type: SET_USER_DATA,
   data: { userId, email, fullName, isAuth, errors },
 });
 
-type setErrorMessageType = {
+type SetErrorMessageActionType = {
   type: typeof SET_AUTH_ERROR,
   errorMessage: string
 };
 
-export const setErrorMessage = (errorMessage: string): setErrorMessageType => ({
+export const setErrorMessage = (errorMessage: string): SetErrorMessageActionType => ({
   type: SET_AUTH_ERROR,
   errorMessage,
 });
 
-type setUserInfoType = {
+type SetUserInfoActionType = {
   type: typeof SET_USER_INFO
   fullName: string
   profilePhoto: string
 };
 
-export const setUserInfo = (fullName: string, profilePhoto: string): setUserInfoType => ({
+export const setUserInfo = (fullName: string, profilePhoto: string): SetUserInfoActionType => ({
   type: SET_USER_INFO,
   fullName,
   profilePhoto,
 });
 
-type setCaptchaUrlSuccessType = {
+type SetCaptchaUrlSuccessActionType = {
   type: typeof SET_CAPTCHA_URL_SUCCESS
   captchaUrl: string
 };
 
-export const setCaptchaUrlSuccess = (captchaUrl: string): setCaptchaUrlSuccessType => ({
+export const setCaptchaUrlSuccess = (captchaUrl: string): SetCaptchaUrlSuccessActionType => ({
   type: SET_CAPTCHA_URL_SUCCESS,
   captchaUrl,
 });
