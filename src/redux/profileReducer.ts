@@ -1,4 +1,10 @@
 import { profileAPI } from '../api/api';
+import {
+  PostType,
+  ProfileContactsType,
+  ProfilePhotosType,
+  ProfileType,
+} from '../types/types';
 
 const ADD_POST = 'ADD-POST';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
@@ -8,38 +14,6 @@ const UPDATE_PHOTO_SUCCESS = 'profileReducer/UPDATE_PHOTO_SUCCESS';
 const UPDATE_PROFILE_SUCCESS = 'profileReducer/UPDATE_PROFILE_SUCCESS';
 const SET_EDIT_MODE_FORM = 'profileReducer/SET_EDIT_MODE_FORM';
 const SET_ERROR_FORM = 'profileReducer/SET_ERROR_FORM';
-
-type PostType = {
-  id: number
-  name: string
-  likesCount: number
-};
-
-type ProfileContactsType = {
-  facebook: string
-  github: string
-  instagram: string
-  mainLink: string
-  twitter: string
-  vk: string
-  website: string
-  youtube: string
-};
-
-type ProfilePhotosType = {
-  large: string | null
-  small: string | null
-};
-
-type ProfileType = {
-  aboutMe: string
-  contacts: ProfileContactsType
-  fullName: string
-  lookingForAJob: boolean
-  lookingForAJobDescription: string
-  photos: ProfilePhotosType
-  userId: number
-  };
 
 const initialState = {
   posts: [
@@ -53,9 +27,12 @@ const initialState = {
   errorForm: null as string[] | null,
 };
 
-type InitialStateType = typeof initialState;
+export type InitialStateProfilePageType = typeof initialState;
 
-const profileReducer = (state = initialState, action: any): InitialStateType => {
+const profileReducer = (
+  state = initialState,
+  action: any
+): InitialStateProfilePageType => {
   switch (action.type) {
     case ADD_POST:
       const newPost = {
@@ -111,25 +88,30 @@ const profileReducer = (state = initialState, action: any): InitialStateType => 
 // action creator
 
 type AddPostActionType = {
-  type: typeof ADD_POST
-  postName: string
+  type: typeof ADD_POST;
+  postName: string;
 };
 
-export const addPost = (postName: string): AddPostActionType => ({ type: ADD_POST, postName });
+export const addPost = (postName: string): AddPostActionType => ({
+  type: ADD_POST,
+  postName,
+});
 
 type SetUserProfileActionType = {
-  type: typeof SET_USER_PROFILE
-  profile: ProfileType
+  type: typeof SET_USER_PROFILE;
+  profile: ProfileType;
 };
 
-export const setUserProfile = (profile: ProfileType): SetUserProfileActionType => ({
+export const setUserProfile = (
+  profile: ProfileType
+): SetUserProfileActionType => ({
   type: SET_USER_PROFILE,
   profile,
 });
 
 type SetUserStatusActionType = {
-  type: typeof SET_USER_STATUS
-  status: string
+  type: typeof SET_USER_STATUS;
+  status: string;
 };
 
 export const setUserStatus = (status: string): SetUserStatusActionType => ({
@@ -138,37 +120,45 @@ export const setUserStatus = (status: string): SetUserStatusActionType => ({
 });
 
 type DeletePostActionType = {
-  type: typeof DELETE_POST
-  id: number
+  type: typeof DELETE_POST;
+  id: number;
 };
 
-export const deletePost = (id: number): DeletePostActionType => ({ type: DELETE_POST, id });
+export const deletePost = (id: number): DeletePostActionType => ({
+  type: DELETE_POST,
+  id,
+});
 
 type UpdatePhotoSuccessActionType = {
-  type: typeof UPDATE_PHOTO_SUCCESS
-  photos: ProfilePhotosType
+  type: typeof UPDATE_PHOTO_SUCCESS;
+  photos: ProfilePhotosType;
 };
 
-const updatePhotoSuccess = (photos: ProfilePhotosType): UpdatePhotoSuccessActionType => ({
+const updatePhotoSuccess = (
+  photos: ProfilePhotosType
+): UpdatePhotoSuccessActionType => ({
   type: UPDATE_PHOTO_SUCCESS,
   photos,
 });
 
 type UpdateProfileSuccessActionType = {
-  type: typeof UPDATE_PROFILE_SUCCESS
-  profile: ProfileType
-  contacts: ProfileContactsType
+  type: typeof UPDATE_PROFILE_SUCCESS;
+  profile: ProfileType;
+  contacts: ProfileContactsType;
 };
 
-const updateProfileSuccess = (profile: ProfileType, contacts: ProfileContactsType): UpdateProfileSuccessActionType => ({
+const updateProfileSuccess = (
+  profile: ProfileType,
+  contacts: ProfileContactsType
+): UpdateProfileSuccessActionType => ({
   type: UPDATE_PROFILE_SUCCESS,
   profile,
   contacts,
 });
 
 type SetEditModeActionType = {
-  type: typeof SET_EDIT_MODE_FORM
-  editMode: boolean
+  type: typeof SET_EDIT_MODE_FORM;
+  editMode: boolean;
 };
 
 export const setEditMode = (editMode: boolean): SetEditModeActionType => ({
@@ -177,11 +167,14 @@ export const setEditMode = (editMode: boolean): SetEditModeActionType => ({
 });
 
 type SetErrorFormActionType = {
-  type: typeof SET_ERROR_FORM
-  error: string
+  type: typeof SET_ERROR_FORM;
+  error: string;
 };
 
-const setErrorForm = (error: string): SetErrorFormActionType => ({ type: SET_ERROR_FORM, error });
+const setErrorForm = (error: string): SetErrorFormActionType => ({
+  type: SET_ERROR_FORM,
+  error,
+});
 
 // thunk creator
 
@@ -209,14 +202,16 @@ export const updatePhoto = (photo: string) => async (dispatch: any) => {
   }
 };
 
-export const updateProfile = (profile: ProfileType, contacts: ProfileContactsType) => async (dispatch: any) => {
-  const response = await profileAPI.updateProfile({ ...profile }, contacts);
-  if (response.resultCode === 0) {
-    dispatch(updateProfileSuccess(profile, contacts));
-  } else {
-    dispatch(setErrorForm(response.messages[0]));
-  }
-  return response.resultCode;
-};
+export const updateProfile =
+  (profile: ProfileType, contacts: ProfileContactsType) =>
+  async (dispatch: any) => {
+    const response = await profileAPI.updateProfile({ ...profile }, contacts);
+    if (response.resultCode === 0) {
+      dispatch(updateProfileSuccess(profile, contacts));
+    } else {
+      dispatch(setErrorForm(response.messages[0]));
+    }
+    return response.resultCode;
+  };
 
 export default profileReducer;
