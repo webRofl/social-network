@@ -1,16 +1,24 @@
+import { AppStateType } from './redux-store';
+import { ThunkAction } from 'redux-thunk';
 import { getMe } from './authReducer';
+import { Dispatch } from 'redux';
 
 const SET_INITIALIZED = 'appReducer/SET_INITIALIZED';
 
 type InitialStateType = {
-  isInitialized: boolean
+  isInitialized: boolean;
 };
 
 const initialState: InitialStateType = {
   isInitialized: false,
 };
 
-const appReducer = (state = initialState, action: any): InitialStateType => {
+type ActionsType = InitializeAppType;
+
+const appReducer = (
+  state = initialState,
+  action: ActionsType
+): InitialStateType => {
   switch (action.type) {
     case SET_INITIALIZED:
       return {
@@ -24,12 +32,15 @@ const appReducer = (state = initialState, action: any): InitialStateType => {
 };
 
 type InitializeAppType = {
-  type: typeof SET_INITIALIZED
-}
+  type: typeof SET_INITIALIZED;
+};
 
-export const initializeApp = (): InitializeAppType => ({ type: SET_INITIALIZED });
+export const initializeApp = (): InitializeAppType => ({
+  type: SET_INITIALIZED,
+});
 
-export const initialize = () => (dispatch: any) => {
+export const initialize = () => (dispatch: Dispatch<ActionsType>) => {
+  //@ts-ignore
   const promise = dispatch(getMe());
   Promise.all([promise]).then(() => {
     dispatch(initializeApp());

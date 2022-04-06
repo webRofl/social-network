@@ -1,3 +1,4 @@
+import { Dispatch } from 'redux';
 import { authAPI, profileAPI, securityAPI } from '../api/api';
 
 const SET_USER_DATA = 'authReducer/SET_USER_DATA';
@@ -17,7 +18,16 @@ const initialState = {
 
 type InitialStateType = typeof initialState;
 
-const authReducer = (state = initialState, action: any): InitialStateType => {
+type ActionTypes =
+  | SetAuthUserDataActionType
+  | SetErrorMessageActionType
+  | SetUserInfoActionType
+  | SetCaptchaUrlSuccessActionType;
+
+const authReducer = (
+  state = initialState,
+  action: ActionTypes
+): InitialStateType => {
   switch (action.type) {
     case SET_USER_DATA:
       return {
@@ -27,7 +37,9 @@ const authReducer = (state = initialState, action: any): InitialStateType => {
     case SET_AUTH_ERROR:
       return {
         ...state,
-        errors: action.errorMessage.push(action.errorMessage),
+        //errors: state.errorMessage.push(action.errorMessage),
+        //@ts-ignore
+        errors: state.errorMessage.push(action.errorMessage),
       };
     case SET_USER_INFO:
       return {
@@ -48,16 +60,16 @@ const authReducer = (state = initialState, action: any): InitialStateType => {
 // action creator
 
 type SetAuthUserDataDataActionType = {
-  userId: number | null
-  email: string | null
-  fullName: string | null
-  isAuth: boolean
-  errors: string[] | null
+  userId: number | null;
+  email: string | null;
+  fullName: string | null;
+  isAuth: boolean;
+  errors: string[] | null;
 };
 
 type SetAuthUserDataActionType = {
-  type: typeof SET_USER_DATA
-  data: SetAuthUserDataDataActionType
+  type: typeof SET_USER_DATA;
+  data: SetAuthUserDataDataActionType;
 };
 
 export const setAuthUserData = (
@@ -72,33 +84,40 @@ export const setAuthUserData = (
 });
 
 type SetErrorMessageActionType = {
-  type: typeof SET_AUTH_ERROR,
-  errorMessage: string
+  type: typeof SET_AUTH_ERROR;
+  errorMessage: string;
 };
 
-export const setErrorMessage = (errorMessage: string): SetErrorMessageActionType => ({
+export const setErrorMessage = (
+  errorMessage: string
+): SetErrorMessageActionType => ({
   type: SET_AUTH_ERROR,
   errorMessage,
 });
 
 type SetUserInfoActionType = {
-  type: typeof SET_USER_INFO
-  fullName: string
-  profilePhoto: string
+  type: typeof SET_USER_INFO;
+  fullName: string;
+  profilePhoto: string;
 };
 
-export const setUserInfo = (fullName: string, profilePhoto: string): SetUserInfoActionType => ({
+export const setUserInfo = (
+  fullName: string,
+  profilePhoto: string
+): SetUserInfoActionType => ({
   type: SET_USER_INFO,
   fullName,
   profilePhoto,
 });
 
 type SetCaptchaUrlSuccessActionType = {
-  type: typeof SET_CAPTCHA_URL_SUCCESS
-  captchaUrl: string
+  type: typeof SET_CAPTCHA_URL_SUCCESS;
+  captchaUrl: string;
 };
 
-export const setCaptchaUrlSuccess = (captchaUrl: string): SetCaptchaUrlSuccessActionType => ({
+export const setCaptchaUrlSuccess = (
+  captchaUrl: string
+): SetCaptchaUrlSuccessActionType => ({
   type: SET_CAPTCHA_URL_SUCCESS,
   captchaUrl,
 });
@@ -114,7 +133,12 @@ export const getMe = () => async (dispatch: any) => {
 };
 
 export const login =
-  (email: string, password: string, rememberMe: boolean = false, captcha: string | null = null) =>
+  (
+    email: string,
+    password: string,
+    rememberMe: boolean = false,
+    captcha: string | null = null
+  ) =>
   async (dispatch: any) => {
     const loginData = await authAPI.login(email, password, rememberMe, captcha);
     if (loginData.resultCode === 0) {
@@ -123,6 +147,8 @@ export const login =
       if (loginData.resultCode === 10) {
         dispatch(getCaptchaUrl());
       }
+      console.log(loginData.messages[0]);
+
       dispatch(setErrorMessage(loginData.messages[0]));
     }
   };
