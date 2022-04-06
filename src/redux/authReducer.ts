@@ -37,9 +37,8 @@ const authReducer = (
     case SET_AUTH_ERROR:
       return {
         ...state,
-        //errors: state.errorMessage.push(action.errorMessage),
         //@ts-ignore
-        errors: state.errorMessage.push(action.errorMessage),
+        errors: action.errorMessage,
       };
     case SET_USER_INFO:
       return {
